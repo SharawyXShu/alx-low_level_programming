@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -c $CFILE ‘ehco $cfile | cut -d -f1’.o
+gcc -c $CFILE ‘ehco $cfile | cut -d -f1’ .o
