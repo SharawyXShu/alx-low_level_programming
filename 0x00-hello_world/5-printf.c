@@ -4,7 +4,7 @@
  *
  * Description: A C program tha prints with ptintf function
  *
- * Retur: Always 0 (Success)
+ * Return: Always 0 (Success)
  */
 
 int main(void)
