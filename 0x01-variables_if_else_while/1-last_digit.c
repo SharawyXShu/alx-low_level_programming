@@ -6,7 +6,7 @@
  * main - Entry point
  *
  * Description: print a value of N status :
- *		greater than , is \ero and is not less than 6
+ *		greater than , is zero and is not less than 6
  *
  * Return: 0 (Success)
  */
