@@ -16,4 +16,4 @@ void print_array(int *a, int n);
 void *_strcpy(char *dest, char *src);
 int _atoi(char *s);
 
-#endif /* MAIN.H */
+#endif /* MAIN_H */
