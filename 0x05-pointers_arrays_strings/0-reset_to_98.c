@@ -5,7 +5,6 @@
  * and updates the value it points to 98
  * @n: int parameter
  *
- * Return: Nothing
  */
 
 void rest_to_98(int *n)
