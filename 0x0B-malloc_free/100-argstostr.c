@@ -20,7 +20,6 @@ int _strlen(char *s)
 /**
  * *argstostr - concatenates all the arguments of your program
  * @ac: int
- * @h: string
  * @av: argument
  * Return: string
  */
