@@ -3,41 +3,87 @@
 #include <stdlib.h>
 
 /**
- * *_realloc - allocates a memory block using malloc
- * @ptr: pointer to memory allocates with malloc(old_size)
- * @old_size: size in bytes, of the allocated space for ptr
- * @new_size: size in bytes of the new memory block
- *
- * Return: NULL if new_size = 0 and ptr is not NULL
+ * _puts - prints a string, followed by a new line
+ * @str: pointer to the string
+ * Return: void
  */
 
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void _puts(char *str)
 {
-	void *p;
-	unsigned int i;
+	int i = 0;
 
-	if (new_size == old_size)
-		return (ptr);
-	if (new_size == 0 && ptr != NULL)
+	while (str[i])
 	{
-		free(ptr);
-			return (NULL);
+		_putchar(str[i]);
+		i++;
 	}
-	if (ptr == NULL)
+}
+
+/**
+ * _atoi - convert a string to an integer
+ * @s: char type string
+ * Return: integar convereted
+ */
+
+int _atoi(const char *s)
+{
+	int sign = 1;
+	unsigned long int resp = 0, firstNum, i;
+
+	for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
 	{
-		p = malloc(new_size);
-		if (p == NULL)
-			return (NULL);
-		return (p);
+		if (s[firstNum] == '-')
+		{
+			sign *= -1;
+		}
 	}
-	if (new_size > old_size)
+
+	for (i = firstNum; s[i] >= 48 && s[i] <= 57; i++)
 	{
-		p = malloc(new_size);
-		if (p == NULL)
-			return (NULL);
-		for (i = 0; i < old_size && i < new_size; i++)
-			*((char *)p + i) = *((char *)ptr + i);
-		free(ptr);
+		resp *= 10;
+		resp += (s[i] - 48);
 	}
-	return (p);
+
+	return (sign * resp);
+}
+
+/**
+ * print_int - prints an inteager
+ * @n: int
+ * Return: 0
+ */
+
+void print_int(unsigned long int n)
+{
+	unsigned long int divisor = 1, i, resp;
+
+	for (i = 0; n / divisor > 9; i++, divisor /= 10)
+		;
+	for (; divisor >= 1; n %= divisor, divisor /= 10)
+	{
+		resp = n / divisor;
+		_putchar('0' + resp);
+	}
+}
+
+/**
+ * main - prinr the result of the multi, flollowe by a new line
+ * @argc: int
+ * @argv: list
+ * Return: 0
+ */
+
+int main(int argc, char const *argv[])
+{
+	(void)argc;
+
+	if (argc != 3)
+	{
+		_puts("Error ");
+		exit(98);
+	}
+	print_int(_atoi(argv[1]) * _atoi(argv[2]));
+	_putchar('\n');
+
+	return (0);
 }
