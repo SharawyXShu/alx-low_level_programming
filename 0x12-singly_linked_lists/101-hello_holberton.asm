@@ -1,5 +1,5 @@
 section		.text
-	extren	printf
+	extern	printf
 	global	main
 
 main:
