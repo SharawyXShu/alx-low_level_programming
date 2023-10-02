@@ -8,38 +8,38 @@
 
 /**
  * main - prog
- * @test: argument coint
- * @vest: argument vector
+ * @ac: argument coint
+ * @av: argument vector
  * Return: 1 on success 0 on fai
  */
 
-int main(int test, char **vest)
+int main(int ac, char **av)
 {
-	int from_nc = 0, to_nc = 0;
+	int from_fd = 0, to_fd = 0;
 	ssize_t b;
 	char buf[READ_BUF_SIZE];
 
-	if (test != 3)
+	if (ac != 3)
 		dprintf(STDERR_FILENO, USAGE), exit(97);
-	from_nc = open(vest[1], O_RDONLY);
-	if (from_nc == -1)
-		dprintf(STDERR_FILENO, ERR_NOREAD, vest[1]), exit(98);
-	to_nc = open(vest[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
-	if (to_nc == -1)
-		dprintf(STDERR_FILENO, ERR_NOWRITE, vest[2]), exit(99);
+	from_fd = open(av[1], O_RDONLY);
+	if (from_fd == -1)
+		dprintf(STDERR_FILENO, ERR_NOREAD, av[1]), exit(98);
+	to_fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
+	if (to_fd  == -1)
+		dprintf(STDERR_FILENO, ERR_NOWRITE, av[2]), exit(99);
 
-	while ((b = read(from_nc, buf, READ_BUF_SIZE)) > 0)
-		if (write(to_nc, buf, b) != b)
-			dprintf(STDERR_FILENO, ERR_NOWRITE, vest[2]), exit(99);
+	while ((b = read(from_fd, buf, READ_BUF_SIZE)) > 0)
+		if (write(to_fd, buf, b) != b)
+			dprintf(STDERR_FILENO, ERR_NOWRITE, av[2]), exit(99);
 	if (b == -1)
-		dprintf(STDERR_FILENO, ERR_NOREAD, vest[1]), exit(98);
+		dprintf(STDERR_FILENO, ERR_NOREAD, av[1]), exit(98);
 
-	from_nc = close(from_nc);
-	to_nc = close(to_nc);
-	if (from_nc)
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, from_nc), exit(100);
-	if (to_nc)
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, from_nc), exit(100);
+	from_fd = close(from_fd);
+	to_fd = close(to_fd);
+	if (from_fd)
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, from_fd), exit(100);
+	if (to_fd)
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, from_fd), exit(100);
 
 	return (EXIT_SUCCESS);
 }
